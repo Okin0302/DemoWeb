@@ -12,16 +12,11 @@
             }
             body, html {
                 margin: 0;
-                padding: 0;
+                padding-left: 15%;
+                padding-top: 0%;
                 font-family: 'Arial', sans-serif;
                 height: 100%;
                 overflow-x: hidden;
-            }
-            @media (min-width: 992px) {
-                body {
-                    padding-top: 0;
-                    padding-left: 15%;
-                }
             }
             .header {
                 position: fixed;
@@ -31,11 +26,40 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 0.5%;
+                padding: 1rem 2rem;
                 background-color: rgb(250, 180, 130);
                 z-index: 100;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-                width: 99%;
+                box-sizing: border-box;
+            }
+            .menu-toggle {
+                display: none;
+                background-color: white;
+                border: none;
+                color: rgb(250, 180, 130);
+                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: rgb(250, 180, 130);
+                padding: 1rem;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 200;
+            }
+            .menu.show {
+                display: flex;
+                flex-direction: column;
+            }
+            .menu a {
+                display: block;
+                margin: 0.5rem 0;
             }
             .logo {
                 color: white;
@@ -46,11 +70,11 @@
             .nav-links {
                 display: flex;
                 gap: 1rem;
-            }
+              }
             .nav-link {
                 color: white;
                 text-decoration: none;
-                padding: 0.5rem 2rem;
+                padding: 0.5rem 1rem;
                 border-radius: 5px;
                 transition: background-color 0.3s ease;
             }
@@ -93,42 +117,39 @@
             #sideNav .navbar-toggler:focus {
                 outline-color: #d48a6e;
             }
-            @media (min-width: 992px) {
-                #sideNav {
-                    text-align: center;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    display: flex;
-                    flex-direction: column;
-                    width: 15%;
-                    height: 100vh;
-                }
-                #sideNav .navbar-brand {
-                    display: flex;
-                    margin: auto auto;
-                    flex-direction: column-reverse;
-                    justify-content: center;
-                    align-items: center;
-                }
-                #sideNav .navbar-brand .img-profile {
-                    max-width: 90%;
-                    max-height: 90%;
-                    border: 0.5rem solid rgba(255, 255, 255, 0.2);
-                }
-                #sideNav .navbar-collapse {
-                    display: flex;
-                    flex-grow: 0;
-                    width: 100%;
-                    margin-bottom: auto;
-                    justify-content: center;
-                }
-                #sideNav .navbar-collapse .navbar-nav {
-                    flex-direction: column;
-                    font-size: 1.5rem;
-                    line-height: 350%;
-                    width: 100%;
-                }
+            #sideNav {
+                text-align: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                display: flex;
+                flex-direction: column;
+                width: 20%;
+                height: 100vh;
+            }
+            #sideNav .navbar-brand {
+                display: flex;
+                padding-top: 20%;
+                flex-direction: column-reverse;
+                justify-content: center;
+                align-items: center;
+            }
+            #sideNav .navbar-brand .img-profile {
+                max-width: 90%;
+                max-height: 90%;
+                border: 0.5rem solid rgba(255, 255, 255, 0.2);
+            }
+            #sideNav .navbar-collapse {
+                display: flex;
+                flex-grow: 0;
+                width: 100%;
+                justify-content: center;
+            }
+            #sideNav .navbar-collapse .navbar-nav {
+                flex-direction: column;
+                font-size: 1.5rem;
+                line-height: 300%;
+                width: 100%;
             }
             .resume-sections-container {
                 position: relative;
@@ -168,6 +189,18 @@
             a:hover, a:focus, a:active {
                 color: #824027;
             }
+            @media (max-width: 768px) {
+                .menu-toggle {
+                  display: block;
+                }
+                .nav-links {
+                  display: none;
+                }
+                .menu {
+                  right: 0;
+                  left: auto;
+                }
+            }
         </style>
     </head>
     
@@ -176,19 +209,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     </head>
     <body>
-    <header class="header">
-        <a href="index.html" class="logo">AI Project</a>
-        <nav class="nav-links">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="demo.html" class="nav-link">Demo</a>
-          <a href="about.html" class="nav-link">About</a>
-          <a href="https://github.com/Okin0302/DemoWeb" class="nav-link">GitHub</a>
-        </nav>
-    </header>
+        <header class="header">
+            <a href="index.html" class="logo">AI Project</a>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+            <nav class="nav-links">
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="demo.html" class="nav-link">Demo</a>
+              <a href="about.html" class="nav-link">About</a>
+              <a href="https://github.com/Okin0302/DemoWeb" class="nav-link">GitHub</a>
+            </nav>
+            <div id="menu" class="menu">
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="demo.html" class="nav-link">Demo</a>
+              <a href="about.html" class="nav-link">About</a>
+              <a href="https://github.com/Okin0302/DemoWeb" class="nav-link">GitHub</a>
+            </div>
+        </header>
     <nav class="bg-primary" id="sideNav">
         <span class="navbar-brand">
             <img class="img-profile" src="me.jpg" alt="陳佑祥的照片">
         </span>
+        <br>
         <button class="navbar-toggler"></button>
         <br>
         <div class="navbar-collapse" id="navbarSupportedContent">
@@ -207,32 +248,30 @@
     </nav>
     <div class="resume-sections-container">
         <section class="resume-section active" id="about">
-            <div>
-                <br>
-                <h1>陳
-                    <span class="text-primary">佑祥</span>
-                    <span>Chen
-                        <span class="text-primary">YouXiang</span>
-                    </span>
-                </h1>
-                <div class="subheading">
-                    <p class="lead">住址：台中市西屯區青海南街207號4樓之3</p>
-                    <p class="lead">電話：0912-123-642</p>
-                    <p class="lead">email：<a href="mailto:propectbear@gmail.com">propectbear@gmail.com</a></p>
-                </div>
-                <br>
-                <br>
-                <br>
-                <span>我畢業於朝陽科技大學資訊管理系，擁有十年的製造業工作經驗，曾任CNC工程師，熟悉現場操作及生產流程管理。雖然我對CNC程式設計有基本的了解，但在求職方向上，我更專注於AI技術。</span>
-                <br>
-                <br>
-                <br>
-                <span>在待業期間，我參加了中興大學的職前培訓課程，並完成了AI人工智慧程式設計與應用開發課程，掌握了Python程式設計、機器學習和深度學習的基礎知識。這些技能使我能夠開發簡單的AI應用，並具備了將AI技術應用於實際情境的能力。</span>
-                <br>
-                <br>
-                <br>
-                <span>我對AI在醫療領域的應用深感興趣，未來希望能在醫院的人工智慧開發部發揮所長，運用我的AI技能，協助開發創新醫療技術，提升醫療服務的效率和精確度。</span>
+            <br>
+            <h1>陳
+                <span class="text-primary">佑祥</span>
+                <span>Chen
+                    <span class="text-primary">YouXiang</span>
+                </span>
+            </h1>
+            <div class="subheading">
+                <p class="lead">住址：台中市西屯區青海南街207號4樓之3</p>
+                <p class="lead">電話：0912-123-642</p>
+                <p class="lead">email：<a href="mailto:propectbear@gmail.com">propectbear@gmail.com</a></p>
             </div>
+            <br>
+            <br>
+            <br>
+            <span>我畢業於朝陽科技大學資訊管理系，擁有十年的製造業工作經驗，曾任CNC工程師，熟悉現場操作及生產流程管理。雖然我對CNC程式設計有基本的了解，但在求職方向上，我更專注於AI技術。</span>
+            <br>
+            <br>
+            <br>
+            <span>在待業期間，我參加了中興大學的職前培訓課程，並完成了AI人工智慧程式設計與應用開發課程，掌握了Python程式設計、機器學習和深度學習的基礎知識。這些技能使我能夠開發簡單的AI應用，並具備了將AI技術應用於實際情境的能力。</span>
+            <br>
+            <br>
+            <br>
+            <span>我對AI在醫療領域的應用深感興趣，未來希望能在醫院的人工智慧開發部發揮所長，運用我的AI技能，協助開發創新醫療技術，提升醫療服務的效率和精確度。</span>
         </section>
 
         <section class="resume-section" id="experience">
@@ -305,5 +344,16 @@
             });
 
         })(jQuery);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.getElementById('menu');
+      
+            menuToggle.addEventListener('click', function() {
+              const isExpanded = this.getAttribute('aria-expanded') === 'true';
+              this.setAttribute('aria-expanded', !isExpanded);
+              menu.classList.toggle('show');
+            });
+          });
     </script>
 </body></html>

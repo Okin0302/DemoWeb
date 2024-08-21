@@ -1,5 +1,8 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Demo Portfolio</title>
         <style>
             :root {
@@ -53,7 +56,7 @@
                 flex-direction: column;
                 overflow: hidden;
             }
-            .browsing-frame {
+            .browsing-frame-web {
                 width: 100%;
                 height: 100%;
                 object-fit: fill;
@@ -131,19 +134,119 @@
                 font-weight: bold;
                 text-decoration: none;
             }
-              .nav-links {
+            .nav-links {
                 display: flex;
                 gap: 1rem;
-            }
-              .nav-link {
+              }
+            .nav-link {
                 color: white;
                 text-decoration: none;
                 padding: 0.5rem 1rem;
                 border-radius: 5px;
                 transition: background-color 0.3s ease;
             }
-              .nav-link:hover {
+            .nav-link:hover {
                 background-color: rgba(255, 255, 255, 0.1);
+            }
+            .menu-toggle {
+                display: none;
+                background-color: white;
+                border: none;
+                color: rgb(250, 180, 130);
+                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background-color: rgb(250, 180, 130);
+                padding: 1rem;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                z-index: 200;
+            }
+            .menu.show {
+              display: flex;
+              flex-direction: column;
+            }
+            .menu a {
+              display: block;
+              margin: 0.5rem 0;
+            }
+            .browsing-frame-container{
+                display: none;
+            }
+            .browsing-title{
+                display: none;
+            }
+            @media (max-width: 768px) {
+                .arrow {
+                    display: block;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    color: white;
+                    border: none;
+                    font-size: 2rem;
+                    padding: 10px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    margin: 0 10px;
+                    transition: background-color 0.3s ease;
+                }
+                .arrow:hover {
+                    background-color: var(--primary-color);
+                }
+                .arrow-left {
+                    left: 10px;
+                }
+                .arrow-right {
+                    right: 10px;
+                }
+                .browsing-frame-container {
+                    position: fixed;
+                    height: 30%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-items: center;
+                    justify-content: center;
+                    overflow: hidden;
+                }
+                .browsing-frame {
+                    width: 80%;
+                    height: 80%;
+                }
+                .browsing-title {
+                    display: flex;
+                    flex-direction: row;
+                    font-size: 1.2rem;
+                    color: var(--primary-color);
+                    align-items: center;
+                    justify-items: center;
+                    justify-content: center;
+                }
+                .menu-toggle {
+                  display: block;
+                }
+                .nav-links {
+                  display: none;
+                }
+                .menu {
+                  right: 0;
+                  left: auto;
+                }
+                .container{
+                    display: none;
+                }
+                .sidebar {
+                    display: none;
+                }
+                .main-content{
+                    display: none;
+                }
             }
         </style>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -151,46 +254,64 @@
     <body>
         <header class="header">
             <a href="index.html" class="logo">AI Project</a>
+            <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
             <nav class="nav-links">
               <a href="index.html" class="nav-link">Home</a>
               <a href="demo.html" class="nav-link">Demo</a>
               <a href="about.html" class="nav-link">About</a>
               <a href="https://github.com/Okin0302/DemoWeb" class="nav-link">GitHub</a>
             </nav>
+            <div id="menu" class="menu">
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="demo.html" class="nav-link">Demo</a>
+              <a href="about.html" class="nav-link">About</a>
+              <a href="https://github.com/Okin0302/DemoWeb" class="nav-link">GitHub</a>
+            </div>
         </header>
+        <h3 class="browsing-title"></h3>
+        <div class="browsing-frame-container">
+            <button class="arrow arrow-left">&lt;</button>
+            <img class="browsing-frame" src="about:blank">
+            <button class="arrow arrow-right">&gt;</button>
+        </div>
         <div class="container">
             <div class="sidebar">
                 <h2>My Projects</h2></a>
-            <div class="project-thumbnail" data-url="LinearRegressionSimulatorDemo.gif">
-                <h3>Linear Regression Simulator</h3>
+                <div class="project-thumbnail" data-url="LinearRegressionSimulatorDemo.gif">
+                    <h3>Linear Regression Simulator</h3>
+                </div>
+                <div class="project-thumbnail" data-url="IrisMultivariatePairGraphAnalysisDemo.gif">
+                    <h3>Iris Multivariate Analysis</h3>
+                </div>
+                <div class="project-thumbnail" data-url="DecisionTreePredictionDemo.gif">
+                    <h3>Decision Tree Prediction</h3>
+                </div>
+                <div class="project-thumbnail" data-url="SVMDemo.gif">
+                    <h3>3D SVM Simulator with Iris</h3>
+                </div>
+                <div class="project-thumbnail" data-url="ECGDemo.gif">
+                    <h3>ECG Simulator</h3>
+                </div>
             </div>
-            <div class="project-thumbnail" data-url="IrisMultivariatePairGraphAnalysisDemo.gif">
-                <h3>Iris Multivariate Analysis</h3>
+            <div class="main-content">
+                <img class="browsing-frame-web" src="about:blank" title="Project Demo">
             </div>
-            <div class="project-thumbnail" data-url="DecisionTreePredictionDemo.gif">
-                <h3>Decision Tree Prediction</h3>
-            </div>
-            <div class="project-thumbnail" data-url="SVMDemo.gif">
-                <h3>3D SVM Simulator with Iris</h3>
-            </div>
-            <div class="project-thumbnail" data-url="ECGDemo.gif">
-                <h3>ECG Simulator</h3>
-            </div>
-        </div>
-        <div class="main-content">
-            <img class="browsing-frame" src="about:blank" title="Project Demo">
         </div>
     </div>
     <script>
+
         const thumbnails = document.querySelectorAll('.project-thumbnail');
         const browsingFrame = document.querySelector('.browsing-frame');
+        const browsingFrame_web = document.querySelector('.browsing-frame-web');
+        const browsingTitle = document.querySelector('.browsing-title');
+        let currentIndex = 0;
 
         thumbnails.forEach(thumbnail => {
             thumbnail.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                const url = thumbnail.getAttribute('data-url');
-                browsingFrame.src = url;
+                const url_web = thumbnail.getAttribute('data-url');
+                browsingFrame_web.src = url_web;
 
                 thumbnails.forEach(t => t.style.borderLeft = 'none');
                 thumbnail.style.borderLeft = '4px solid var(--accent-color)';
@@ -198,12 +319,47 @@
                 thumbnail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             });
         });
+        
+        function updateBrowsingFrame(index) {
+            const url = thumbnails[index].getAttribute('data-url');
+            const title = thumbnails[index].querySelector('h3').textContent;
+            browsingFrame.src = url;
+            browsingTitle.textContent = title;
+            currentIndex = index;
+        }
 
         if (thumbnails.length > 0) {
             const firstProjectUrl = thumbnails[0].getAttribute('data-url');
+            const firstProjecttitle = thumbnails[0].querySelector('h3').textContent;
             browsingFrame.src = firstProjectUrl;
+            browsingTitle.textContent = firstProjecttitle
+        }
+        if (thumbnails.length > 0) {
+            const firstProjectUrl = thumbnails[0].getAttribute('data-url');            
+            browsingFrame_web.src = firstProjectUrl;
             thumbnails[0].style.borderLeft = '4px solid var(--accent-color)';
         }
+
+        document.querySelector('.arrow-left').addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : thumbnails.length - 1;
+            updateBrowsingFrame(currentIndex);
+        });
+
+        document.querySelector('.arrow-right').addEventListener('click', () => {
+            currentIndex = (currentIndex < thumbnails.length - 1) ? currentIndex + 1 : 0;
+            updateBrowsingFrame(currentIndex);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menu = document.getElementById('menu');
+      
+            menuToggle.addEventListener('click', function() {
+              const isExpanded = this.getAttribute('aria-expanded') === 'true';
+              this.setAttribute('aria-expanded', !isExpanded);
+              menu.classList.toggle('show');
+            });
+        });
     </script>
     </body>
 </html>
