@@ -16,7 +16,7 @@
                 padding-top: 0%;
                 font-family: 'Arial', sans-serif;
                 height: 100%;
-                overflow-x: hidden;
+                overflow: hidden;
             }
             .header {
                 position: fixed;
@@ -183,6 +183,18 @@
             .lead{
                 line-height: 50%;
             }
+            .img-profile-p{
+                display: none;
+            }
+            .navbar-nav-p{
+                display: none;
+            }
+            .resume-section-p{
+                display: none;
+            }
+            .resume-sections-container-p{
+                display: none;
+            }
             a {
                 color: var(--primary-color);
             }
@@ -190,6 +202,45 @@
                 color: #824027;
             }
             @media (max-width: 768px) {
+                body, html {
+                    font-family: 'Arial', sans-serif;
+                    padding: 0%;
+                    height: 100%;
+                }
+                .resume-sections-container{
+                    display: none;
+                }
+                .resume-sections-container-p{
+                    position: relative;
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                }
+                .resume-section-p {
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    left: 0;
+                    width: 90%;
+                    height: 65%;
+                    padding: 10% 5%;
+                    opacity: 0;
+                    transition: opacity 0.5s ease, transform 0.5s ease;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    transform: translateX(100%);
+                }
+                .resume-section-p.active {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                .flex{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                }
                 .menu-toggle {
                   display: block;
                 }
@@ -199,6 +250,33 @@
                 .menu {
                   right: 0;
                   left: auto;
+                }
+                .img-profile-p{
+                    display: block;
+                    width:40%;
+                    height: 30%;
+                }
+                .subheading-p {
+                    font-weight: 300;
+                    font-family: Arial, sans-serif;
+                    font-size: 1.2rem;
+                }
+                .navbar-nav-p{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    margin-top: 16%;
+                    background-color: var(--primary-color) !important;
+                }
+                .nav-item-p .nav-link-p{
+                    display: block;
+                    color: white;
+                    letter-spacing: 0.05rem;
+                    font-size: 1.2rem;
+                    text-decoration: none;
+                }
+                #sideNav{
+                    display: none;
                 }
             }
         </style>
@@ -320,6 +398,98 @@
             </div>
         </section>
     </div>
+    <div class="navbar-nav-p">
+        <div class="nav-item-p">
+            <a class="nav-link-p js-scroll-trigger" href="#about-p">關於我</a>
+        </div>
+        <div class="nav-item-p">
+            <a class="nav-link-p js-scroll-trigger" href="#experience-p">學經歷</a>
+        </div>
+        <div class="nav-item-p">
+            <a class="nav-link-p js-scroll-trigger" href="#skills-p">技能</a>
+        </div>
+    </div>
+    <div class="resume-sections-container-p">
+        <section class="resume-section-p active" id="about-p">
+            <div class="flex">
+                <img class="img-profile-p" src="me.jpg" alt="陳佑祥的照片">
+                <h2>陳
+                    <span class="text-primary">佑祥</span>
+                    <br>
+                    <span>Chen
+                        <span class="text-primary">YouXiang</span>
+                    </span>
+                </h2>
+            </div>
+            <div class="subheading-p">
+                <span>住址：台中市西屯區青海南街207號4樓之3</span>
+                <br>
+                <span>電話：0912-123-642</span>
+                <br>
+                <span>email：<a href="mailto:propectbear@gmail.com">propectbear@gmail.com</a></span>
+            </div>
+            <br>
+            <span>我畢業於朝陽科技大學資訊管理系，擁有十年的製造業工作經驗，曾任CNC工程師，熟悉現場操作及生產流程管理。雖然我對CNC程式設計有基本的了解，但在求職方向上，我更專注於AI技術。</span>
+            <br>
+            <br>
+            <span>在待業期間，我參加了中興大學的職前培訓課程，並完成了AI人工智慧程式設計與應用開發課程，掌握了Python程式設計、機器學習和深度學習的基礎知識。這些技能使我能夠開發簡單的AI應用，並具備了將AI技術應用於實際情境的能力。</span>
+            <br>
+            <br>
+            <span>我對AI在醫療領域的應用深感興趣，未來希望能在醫院的人工智慧開發部發揮所長，運用我的AI技能，協助開發創新醫療技術，提升醫療服務的效率和精確度。</span>
+        </section>
+
+        <section class="resume-section-p" id="experience-p">
+            <br>
+            <h2>工作經歷</h2>
+            <h3>捷普綠點高新科技股份有限公司
+                <br>
+                <span class="text-primary right">CNC工程師</span>
+            </h3>
+            <p>工作內容：CNC加工機及相關機械操作、CNC程式設計與程式模擬
+                <br>
+                <span class="text-primary right">2014年10月 - 2024年02月</span>
+            </p>
+            <br>
+            <br>
+            <h2>學習經歷</h2>
+            <h3>朝陽科技大學
+                <br>
+                <span class="text-primary right">資訊管理系</span>
+            </h3>
+            <p>學習內容：基礎 Java、Javascript、CSS、HTML 程式語言
+                <br>
+                <span class="text-primary right">2010年09月 - 2014年06月</span>
+            </p>
+            <br>
+            <br>
+            <h3>中興大學
+                <br>
+                <span class="text-primary right">AI人工智慧程式設計與應用開發班</span>
+            </h3>
+            <p>學習內容：基礎 Python、Django、SQL 程式語言，機器學習及深度學習
+                <br>
+                <span class="text-primary right">2024年07月 - 2024年09月</span>
+            </p>
+        </section>
+
+        <section class="resume-section-p" id="skills-p">
+            <div>
+                <h2>技能</h2>
+                <div class="subheading">程式語言 &amp; 工具</div>
+                <ul class="dev-icons">
+                    <li>Python</li>
+                    <li>Django</li>
+                    <li>Github</li>
+                    <li>MySQL</li>
+                    <li>Java</li>
+                    <li>Javascript</li>
+                    <li>CSS</li>
+                    <li>HTML</li>
+                    <li>Office</li>
+                </ul>
+            </div>
+        </section>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
@@ -333,15 +503,32 @@
                 var target = $(this).attr('href');
                 $('.resume-section').removeClass('active');
                 $(target).addClass('active');
-                
-                if (window.innerWidth < 992) {
-                    $('.navbar-collapse').collapse('hide');
-                }
+
             });
 
             $('body').scrollspy({
                 target: '#sideNav'
             });
+
+            if (window.innerWidth < 768) {
+
+                (function($) {
+                    "use strict";
+
+                    $('.js-scroll-trigger').click(function(e) {
+                        e.preventDefault();
+                        var target = $(this).attr('href');
+                        $('.resume-section-p').removeClass('active');
+                        $(target).addClass('active');
+
+                    });
+
+                    $('body').scrollspy({
+                        target: 'nav-link-p'
+                    });
+
+                })(jQuery);
+            }
 
         })(jQuery);
 
